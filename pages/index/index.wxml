@@ -1,17 +1,36 @@
+
 <!--index.wxml-->
-<view class="container">
-  <form bindsubmit="formSubmit" bindreset="formReset">
-    <text>请输入账单金额：</text>
-    <input type="digit" placeholder="Example: 12.34" focus="{{focus}}" bindinput="bindKeyInput" />
-    <text>请选择小费比例：</text>
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-      <view class="picker">
-        当前选择：{{array[index]}}
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__hd">
+    <view class="page__title">小费计算器</view>
+    <view class="page__desc">通过 WeUI 设计的简易计算小费的微信小程序。</view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-cells__title">账单金额</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="请输入账单金额" type="digit" bindinput="bindKeyInput" />
+        </view>
       </view>
-    </picker>
-    <view class="section__title">tips per person：{{tips}}</view>
-    <view class="section__title">total per person：{{total}}</view>
-    <button type="primary" formType="submit"> Submit </button>
-    <button formType="reset"> Reset </button>
-  </form>
+    </view>
+    <view class="weui-cells__title">小费比例</view>
+    <view class="weui-cells weui-cells_after-title">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <view class="weui-input">
+              当前选择：{{array[index]}}
+            </view>
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view class="weui-cells__title">AA人数</view>
+    <slider bindchange="sliderchange" min="1" max="10" show-value/>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <button class="weui-btn" type="primary" bindtap="submit">确认</button>
+    <button class="weui-btn" type="default" bindtap="reset">重置</button>
+  </view>
 </view>
