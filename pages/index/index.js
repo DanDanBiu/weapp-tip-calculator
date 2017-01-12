@@ -1,11 +1,13 @@
 //index.js
 Page({
   data: {
-    focue: true,
+    focus: true,
     inputValue: 0,
     array: ['15%', '18%', '20%', '25%'],
     index: 0,
-    percents: [0.15, 0.18, 0.2, 0.25]
+    percents: [0.15, 0.18, 0.2, 0.25],
+    tips: 0,
+    total: 0
   },
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -20,10 +22,10 @@ Page({
     })
   },
   formSubmit: function(e) {
-    var tips = this.data.inputValue * this.data.percents[this.data.index]
-    console.log('小费为', tips)
-    var total = +this.data.inputValue + +tips
-    console.log('总和为', total)
+    this.setData({
+      tips: this.data.inputValue * this.data.percents[this.data.index],
+      total: +this.data.inputValue + +this.data.tips
+    })
     wx.showModal({
       title: '计算结果',
       content: '小费：' + tips.toString() + '\n' + '总金额：' + total.toString(),
@@ -39,7 +41,9 @@ Page({
   formReset: function(e) {
     this.setData({
       index: 0,
-      inputValue: 0
+      inputValue: 0,
+      tips: 0,
+      total: 0
     })
   }
 })

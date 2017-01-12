@@ -9,7 +9,9 @@
         当前选择：{{array[index]}}
       </view>
     </picker>
-    <button formType="submit"> Submit </button>
+    <view class="section__title">tips per person：{{tips}}</view>
+    <view class="section__title">total per person：{{total}}</view>
+    <button type="primary" formType="submit"> Submit </button>
     <button formType="reset"> Reset </button>
   </form>
 </view>
